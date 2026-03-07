@@ -27,7 +27,6 @@
                 Chúc em luôn xinh đẹp và rạng rỡ<br>như những đóa hoa này 🌸
             </p>
             <p class="wish-card__sub">Mỗi ngày đều xứng đáng được yêu thương ✨</p>
-            <button class="cta-btn" id="ctaBtn">💌 Gửi lời yêu thương</button>
         </div>
     </div>
 
@@ -455,25 +454,21 @@
 
         function initCanvas() { animateCanvas(); }
 
-        function shootHearts() {
-            const btn = document.getElementById('ctaBtn');
-            btn.classList.add('clicked');
-            setTimeout(() => btn.classList.remove('clicked'), 600);
-            const cx = canvas.width / 2, cy = canvas.height * 0.52;
-            for (let i = 0; i < 40; i++) {
+        function shootHeartsAt(x, y) {
+            const count = 20;
+            for (let i = 0; i < count; i++) {
                 setTimeout(() => {
-                    particles.push(new Particle(cx + (Math.random() - 0.5) * 80, cy, true));
-                }, i * 18);
+                    particles.push(new Particle(
+                        x + (Math.random() - 0.5) * 60,
+                        y + (Math.random() - 0.5) * 60,
+                        true
+                    ));
+                }, i * 15);
             }
         }
 
-        document.getElementById('ctaBtn').addEventListener('click', shootHearts);
-
         document.addEventListener('click', function (e) {
-            if (e.target.closest('#ctaBtn')) return;
-            for (let i = 0; i < 8; i++) {
-                particles.push(new Particle(e.clientX, e.clientY, true));
-            }
+            shootHeartsAt(e.clientX, e.clientY);
         });
     </script>
 </body>

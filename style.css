@@ -1686,3 +1686,82 @@ body.not-loaded * {
         top: 8%;
     }
 }
+
+/* =============================================
+   DESKTOP LAYOUT (min-width: 769px)
+   Card trái — Hoa phải, không chồng nhau
+   ============================================= */
+@media (min-width: 769px) {
+
+    /* Body: full-screen, align to center vertically */
+    body {
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Card: cố định bên trái màn hình */
+    .wish-card {
+        position: fixed;
+        top: 50%;
+        left: clamp(24px, 6vw, 80px);
+        transform: translateY(-50%);
+        width: min(38vw, 420px);
+        animation: fadeInCard-desktop 1.2s ease-out 2.2s forwards;
+    }
+
+    /* Flowers: dịch sang phải và căn dưới */
+    .flowers {
+        position: fixed;
+        bottom: 0;
+        right: -6vw;
+        left: auto;
+        transform-origin: bottom right;
+        transform: scale(1.05) translateX(0);
+        width: 60vw;
+    }
+
+    /* Tiêu đề lớn hơn trên desktop */
+    .wish-card__title {
+        font-size: clamp(3rem, 4vw, 4.5rem);
+    }
+
+    .wish-card__message {
+        font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+    }
+
+    .wish-card__sub {
+        font-size: clamp(0.8rem, 1vw, 0.95rem);
+    }
+
+    .cta-btn {
+        font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+        padding: 13px 32px;
+    }
+}
+
+@keyframes fadeInCard-desktop {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-50% + 24px)) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+/* Màn hình rộng lớn (1200px+): cân bằng lại khoảng cách */
+@media (min-width: 1200px) {
+    .wish-card {
+        left: clamp(60px, 8vw, 140px);
+        width: min(35vw, 460px);
+    }
+
+    .flowers {
+        right: -15vw;
+        width: 58vw;
+    }
+}
